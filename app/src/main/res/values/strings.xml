@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Med Reminder</string>
+    <string name="short_weekday_monday">Seg</string>
+    <string name="short_weekday_tuesday">Ter</string>
+    <string name="short_weekday_wednesday">Qua</string>
+    <string name="short_weekday_thursday">Qui</string>
+    <string name="short_weekday_friday">Sex</string>
+    <string name="short_weekday_saturday">Sáb</string>
+    <string name="short_weekday_sunday">Dom</string>
+    <string name="seg">Seg</string>
+    <string name="planning_title">Planejamento</string>
 </resources>

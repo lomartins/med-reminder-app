@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Med Reminder</string>
+    <string name="short_weekday_monday">Mon</string>
+    <string name="short_weekday_tuesday">Tue</string>
+    <string name="short_weekday_wednesday">Wed</string>
+    <string name="short_weekday_thursday">Thu</string>
+    <string name="short_weekday_friday">Fri</string>
+    <string name="short_weekday_saturday">Sat</string>
+    <string name="short_weekday_sunday">Sun</string>
+    <string name="seg">Mon</string>
+    <string name="planning_title">Your Plan</string>
+</resources>
