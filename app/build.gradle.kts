@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.ui.text.google.fonts)
+    implementation(libs.icons.lucide)
 
     // Koin DI
     implementation(platform(libs.koin.bom))
