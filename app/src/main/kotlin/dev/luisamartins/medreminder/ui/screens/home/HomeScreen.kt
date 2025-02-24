@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import dev.luisamartins.medreminder.model.DosageUnit
 import dev.luisamartins.medreminder.model.Medication
 import dev.luisamartins.medreminder.model.MedicationType
+import dev.luisamartins.medreminder.ui.screens.addmedication.AddMedicationScreen
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -76,6 +77,9 @@ fun HomeScreen(
                 time = "16:00",
             ),
         ),
+        onAddClick = {
+            navController.navigate(AddMedicationScreen)
+        },
         modifier = modifier
     )
 }

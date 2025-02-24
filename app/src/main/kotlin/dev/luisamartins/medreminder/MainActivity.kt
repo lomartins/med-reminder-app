@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dev.luisamartins.medreminder.di.appModule
+import dev.luisamartins.medreminder.ui.screens.addmedication.AddMedicationScreen
 import dev.luisamartins.medreminder.ui.screens.home.HomeScreen
 import dev.luisamartins.medreminder.ui.theme.MedReminderTheme
 import org.koin.compose.KoinApplication
@@ -26,6 +27,9 @@ class MainActivity : ComponentActivity() {
                             HomeScreen(
                                 navController = navController
                             )
+                        }
+                        composable<AddMedicationScreen> {
+                            AddMedicationScreen()
                         }
                     }
                 }
