@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -50,6 +51,7 @@ fun MedicationCard(
     ) {
         Box(
             modifier = Modifier
+                .fillMaxWidth()
                 .clickable(onClick = onClick, enabled = !checked)
                 .padding(24.dp)
                 .alpha(
@@ -108,12 +110,12 @@ private fun MedicationCardPreview() {
         ) {
             Box(modifier = Modifier.padding(16.dp)) {
                 MedicationCard(
-                    title = "Acetato de Ciproterona 100mg",
+                    title = "a",
                     dosage = "1 comprimido",
                     remainingTime = "7 dias",
                     icon = Lucide.Tablets,
                     onClick = {},
-                    checked = true
+                    checked = true,
                 )
             }
         }
