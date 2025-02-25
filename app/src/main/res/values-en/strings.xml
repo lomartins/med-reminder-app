@@ -9,4 +9,14 @@
     <string name="short_weekday_sunday">Sun</string>
     <string name="seg">Mon</string>
     <string name="planning_title">Your Plan</string>
+    <string name="add_med">Add Medication</string>
+    <string name="check_med_message">Do you want to confirm that this procedure was done?</string>
+    <string name="check_med_button">Mark as Done</string>
+    <string name="check_med_abort">Cancel</string>
+    <string name="add_med_title">Add Procedure</string>
+    <string name="med_name">Name</string>
+    <string name="med_dosage">Dosage</string>
+    <string name="med_time">Time</string>
+    <string name="med_add_button">Add</string>
+    <string name="continuous_use">Continuous use</string>
 </resources>

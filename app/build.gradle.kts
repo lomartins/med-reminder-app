@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -39,6 +40,10 @@ android {
     buildFeatures {
         compose = true
     }
+    sourceSets {
+        getByName("main").java.srcDirs("src/main/kotlin")
+        getByName("test").java.srcDirs("src/test/kotlin")
+    }
 }
 
 dependencies {
@@ -57,6 +62,11 @@ dependencies {
     implementation(libs.androidx.ui.text.google.fonts)
     implementation(libs.icons.lucide)
 
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.kotlinx.coroutines.android)
+
     // Koin DI
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.android)
@@ -64,6 +74,8 @@ dependencies {
     testImplementation(libs.koin.test.junit4)
 
     testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

@@ -1,6 +1,7 @@
 package dev.luisamartins.medreminder.ui.screens.home
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import dev.luisamartins.medreminder.model.DosageUnit
@@ -19,66 +20,18 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = koinViewModel()
 ) {
+    LaunchedEffect(Unit) {
+        viewModel.loadMedications()
+    }
+    val state = viewModel.state
     HomeContent(
         currentDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date,
-        medications = listOf(
-            Medication(
-                id = 1,
-                name = "Omega 3",
-                dosage = 1,
-                remainingTimeInDays = 7,
-                dosageUnit = DosageUnit.Pills,
-                type = MedicationType.PILL,
-                time = "8:00",
-            ),
-            Medication(
-                id = 2,
-                name = "Vitamina D",
-                dosage = 25,
-                remainingTimeInDays = -1,
-                dosageUnit = DosageUnit.ML,
-                type = MedicationType.SYRUP,
-                time = "8:00",
-            ),
-            Medication(
-                id = 3,
-                name = "Vitamina C",
-                dosage = 1,
-                remainingTimeInDays = 7,
-                dosageUnit = DosageUnit.Pills,
-                type = MedicationType.PILL,
-                time = "12:00",
-            ),
-            Medication(
-                id = 4,
-                name = "Vitamina D",
-                dosage = 25,
-                remainingTimeInDays = -1,
-                dosageUnit = DosageUnit.ML,
-                type = MedicationType.SYRUP,
-                time = "12:00",
-            ),
-            Medication(
-                id = 5,
-                name = "Vitamina C",
-                dosage = 1,
-                remainingTimeInDays = 7,
-                dosageUnit = DosageUnit.Pills,
-                type = MedicationType.PILL,
-                time = "16:00",
-            ),
-            Medication(
-                id = 6,
-                name = "Vitamina D",
-                dosage = 25,
-                remainingTimeInDays = -1,
-                dosageUnit = DosageUnit.ML,
-                type = MedicationType.SYRUP,
-                time = "16:00",
-            ),
-        ),
+        medications = state.medications,
         onAddClick = {
             navController.navigate(AddMedicationScreen)
+        },
+        onItemClick = { medication: Medication ->
+            viewModel.markMedicationAsChecked(medication)
         },
         modifier = modifier
     )

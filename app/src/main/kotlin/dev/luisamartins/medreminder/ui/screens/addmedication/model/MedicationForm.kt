@@ -8,8 +8,5 @@ data class MedicationForm(
     val dosage: String,
     val dosageUnit: DosageUnit,
     val type: MedicationType,
-    val time: String,
-    val days: List<Int>,
-    val startDate: String,
-    val endDate: String
+    val times: List<String>,
 )

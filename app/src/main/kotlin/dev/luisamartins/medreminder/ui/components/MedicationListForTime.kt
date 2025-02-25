@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,6 +22,7 @@ import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Pill
 import com.composables.icons.lucide.Syringe
 import com.composables.icons.lucide.Tablets
+import dev.luisamartins.medreminder.R
 import dev.luisamartins.medreminder.model.DosageUnit
 import dev.luisamartins.medreminder.model.Medication
 import dev.luisamartins.medreminder.model.MedicationType
@@ -65,11 +67,7 @@ fun MedicationListForTime(
                 MedicationCard(
                     title = medication.name,
                     dosage = "${medication.dosage} ${medication.dosageUnit}",
-                    remainingTime = if (medication.remainingTimeInDays >= 0) {
-                        "${medication.remainingTimeInDays} dias"
-                    } else {
-                        "Uso contínuo"
-                    },
+                    remainingTime = stringResource(R.string.continuous_use),
                     icon = when (medication.type) {
                         MedicationType.PILL -> Lucide.Pill
                         MedicationType.SYRUP -> Lucide.FlaskConical
@@ -77,6 +75,7 @@ fun MedicationListForTime(
                         MedicationType.INJECTION -> Lucide.Syringe
                         MedicationType.DROPS -> Lucide.Droplets
                     },
+                    checked = medication.checked,
                     onClick = {
                         onMedicationClick(medication)
                     },
@@ -100,7 +99,6 @@ private fun MedicationListForTimePreview() {
                         id = 1,
                         name = "Omega 3",
                         dosage = 1,
-                        remainingTimeInDays = 7,
                         dosageUnit = DosageUnit.Pills,
                         type = MedicationType.PILL,
                         time = "8:00",
@@ -109,7 +107,6 @@ private fun MedicationListForTimePreview() {
                         id = 2,
                         name = "Vitamina D",
                         dosage = 25,
-                        remainingTimeInDays = -1,
                         dosageUnit = DosageUnit.ML,
                         type = MedicationType.SYRUP,
                         time = "8:00",

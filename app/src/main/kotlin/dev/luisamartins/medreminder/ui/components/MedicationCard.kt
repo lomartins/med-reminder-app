@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.twotone.Done
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
@@ -18,6 +20,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,7 +38,8 @@ fun MedicationCard(
     remainingTime: String,
     icon: ImageVector,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    checked: Boolean = false
 ) {
     ElevatedCard(
         modifier = modifier,
@@ -43,39 +48,52 @@ fun MedicationCard(
         ),
         shape = MaterialTheme.shapes.large,
     ) {
-        Row(
+        Box(
             modifier = Modifier
-                .clickable(onClick = onClick)
-                .padding(24.dp),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
+                .clickable(onClick = onClick, enabled = !checked)
+                .padding(24.dp)
+                .alpha(
+                    if (checked) 0.5f else 1f
+                ),
         ) {
-            Icon(
-                imageVector = icon,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.size(42.dp),
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-            Column(
-                horizontalAlignment = Alignment.Start,
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold
+                Icon(
+                    imageVector = icon,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(42.dp),
                 )
-                Text(
-                    text = dosage,
-                    fontSize = 16.sp
-                )
+                Spacer(modifier = Modifier.width(16.dp))
+                Column(
+                    horizontalAlignment = Alignment.Start,
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = title,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = dosage,
+                        fontSize = 16.sp
+                    )
+                }
             }
-            Spacer(modifier = Modifier.weight(1f))
             Text(
                 remainingTime,
-                modifier = Modifier.align(Alignment.Bottom)
+                modifier = Modifier.align(Alignment.BottomEnd),
             )
+            if(checked) {
+                Icon(
+                    imageVector = Icons.TwoTone.Done,
+                    contentDescription = null,
+                    modifier = Modifier.align(Alignment.TopEnd).size(42.dp),
+                    tint = Color.Green
+                )
+            }
         }
     }
 }
@@ -90,11 +108,12 @@ private fun MedicationCardPreview() {
         ) {
             Box(modifier = Modifier.padding(16.dp)) {
                 MedicationCard(
-                    title = "Omega 3",
-                    dosage = "1 comprimido ao dia",
+                    title = "Acetato de Ciproterona 100mg",
+                    dosage = "1 comprimido",
                     remainingTime = "7 dias",
                     icon = Lucide.Tablets,
-                    onClick = {}
+                    onClick = {},
+                    checked = true
                 )
             }
         }
