@@ -2,7 +2,6 @@ package dev.luisamartins.medreminder.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -24,16 +23,15 @@ import com.composables.icons.lucide.Pill
 import com.composables.icons.lucide.Syringe
 import com.composables.icons.lucide.Tablets
 import dev.luisamartins.medreminder.R
-import dev.luisamartins.medreminder.model.DosageUnit
-import dev.luisamartins.medreminder.model.Medication
-import dev.luisamartins.medreminder.model.MedicationType
+import dev.luisamartins.medreminder.ui.screens.home.HomeMedicationItemUiState
+import dev.luisamartins.medreminder.ui.screens.home.MedicationTypeUiState
 import dev.luisamartins.medreminder.ui.theme.MedReminderTheme
 
 @Composable
 fun MedicationListForTime(
     time: String,
-    medications: List<Medication>,
-    onMedicationClick: (Medication) -> Unit
+    medications: List<HomeMedicationItemUiState>,
+    onMedicationClick: (HomeMedicationItemUiState) -> Unit
 ) {
     Column {
         val primaryColor = MaterialTheme.colorScheme.primary
@@ -64,19 +62,20 @@ fun MedicationListForTime(
         Column(
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            medications.forEach { medication: Medication ->
+            medications.forEach { medication: HomeMedicationItemUiState ->
                 MedicationCard(
                     title = medication.name,
-                    dosage = "${medication.dosage} ${medication.dosageUnit}",
-                    remainingTime = stringResource(R.string.continuous_use),
+                    dosage = medication.dosage,
+                    remainingTime = medication.remainingTime
+                        ?: stringResource(R.string.continuous_use),
                     icon = when (medication.type) {
-                        MedicationType.PILL -> Lucide.Pill
-                        MedicationType.SYRUP -> Lucide.FlaskConical
-                        MedicationType.TABLET -> Lucide.Tablets
-                        MedicationType.INJECTION -> Lucide.Syringe
-                        MedicationType.DROPS -> Lucide.Droplets
+                        MedicationTypeUiState.PILL -> Lucide.Pill
+                        MedicationTypeUiState.SYRUP -> Lucide.FlaskConical
+                        MedicationTypeUiState.TABLET -> Lucide.Tablets
+                        MedicationTypeUiState.INJECTION -> Lucide.Syringe
+                        MedicationTypeUiState.DROPS -> Lucide.Droplets
                     },
-                    checked = medication.checked,
+                    checked = medication.isTaken,
                     onClick = {
                         onMedicationClick(medication)
                     },
@@ -96,21 +95,25 @@ private fun MedicationListForTimePreview() {
             MedicationListForTime(
                 time = "8:00",
                 medications = listOf(
-                    Medication(
-                        id = 1,
+                    HomeMedicationItemUiState(
                         name = "Omega 3",
-                        dosage = 1,
-                        dosageUnit = DosageUnit.Pills,
-                        type = MedicationType.PILL,
                         time = "8:00",
+                        type = MedicationTypeUiState.PILL,
+                        typeDescription = "Pill",
+                        dosage = "1 Pill",
+                        remainingTime = null,
+                        isOverdue = false,
+                        isTaken = false
                     ),
-                    Medication(
-                        id = 2,
+                    HomeMedicationItemUiState(
                         name = "Vitamina D",
-                        dosage = 25,
-                        dosageUnit = DosageUnit.ML,
-                        type = MedicationType.SYRUP,
                         time = "8:00",
+                        type = MedicationTypeUiState.SYRUP,
+                        typeDescription = "Syrup",
+                        dosage = "25 ML",
+                        remainingTime = null,
+                        isOverdue = false,
+                        isTaken = true
                     )
                 ),
                 onMedicationClick = {}

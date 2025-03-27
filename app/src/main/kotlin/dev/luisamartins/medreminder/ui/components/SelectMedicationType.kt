@@ -21,7 +21,7 @@ import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Pill
 import com.composables.icons.lucide.Syringe
 import com.composables.icons.lucide.Tablets
-import dev.luisamartins.medreminder.model.MedicationType
+import dev.luisamartins.medreminder.domain.model.MedicationType
 import dev.luisamartins.medreminder.ui.theme.MedReminderTheme
 
 @Composable

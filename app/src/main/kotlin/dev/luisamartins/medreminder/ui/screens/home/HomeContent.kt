@@ -35,9 +35,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.luisamartins.medreminder.R
-import dev.luisamartins.medreminder.model.DosageUnit
-import dev.luisamartins.medreminder.model.Medication
-import dev.luisamartins.medreminder.model.MedicationType
 import dev.luisamartins.medreminder.ui.components.MedicationListForTime
 import dev.luisamartins.medreminder.ui.components.WeekDisplay
 import dev.luisamartins.medreminder.ui.theme.MedReminderTheme
@@ -51,15 +48,15 @@ import kotlinx.datetime.toLocalDateTime
 @Composable
 fun HomeContent(
     currentDate: LocalDate,
-    medications: List<Medication>,
+    medications: List<HomeMedicationItemUiState>,
     modifier: Modifier = Modifier,
     onAddClick: () -> Unit = {},
-    onItemClick: (Medication) -> Unit = {}
+    onItemClick: (HomeMedicationItemUiState) -> Unit = {}
 ) {
     val sheetState = rememberModalBottomSheetState()
     val scope = rememberCoroutineScope()
     var showBottomSheet by remember { mutableStateOf(false) }
-    var currentSelectedMedication by remember { mutableStateOf<Medication?>(null) }
+    var currentSelectedMedication by remember { mutableStateOf<HomeMedicationItemUiState?>(null) }
 
     Box(
         modifier = modifier
@@ -167,53 +164,65 @@ private fun HomeContentPreview() {
         HomeContent(
             currentDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date,
             medications = listOf(
-                Medication(
-                    id = 1,
+                HomeMedicationItemUiState(
                     name = "Omega 3",
-                    dosage = 1,
-                    dosageUnit = DosageUnit.Pills,
-                    type = MedicationType.PILL,
                     time = "8:00",
+                    type = MedicationTypeUiState.PILL,
+                    typeDescription = "Pill",
+                    dosage = "1 Pill",
+                    remainingTime = null,
+                    isOverdue = false,
+                    isTaken = false
                 ),
-                Medication(
-                    id = 2,
+                HomeMedicationItemUiState(
                     name = "Vitamina D",
-                    dosage = 25,
-                    dosageUnit = DosageUnit.ML,
-                    type = MedicationType.SYRUP,
                     time = "8:00",
+                    type = MedicationTypeUiState.PILL,
+                    typeDescription = "Syrup",
+                    dosage = "25 ML",
+                    remainingTime = null,
+                    isOverdue = false,
+                    isTaken = false
                 ),
-                Medication(
-                    id = 3,
+                HomeMedicationItemUiState(
                     name = "Vitamina C",
-                    dosage = 1,
-                    dosageUnit = DosageUnit.Pills,
-                    type = MedicationType.PILL,
                     time = "12:00",
+                    type = MedicationTypeUiState.PILL,
+                    typeDescription = "Pill",
+                    dosage = "1 Pill",
+                    remainingTime = null,
+                    isOverdue = false,
+                    isTaken = false
                 ),
-                Medication(
-                    id = 4,
+                HomeMedicationItemUiState(
                     name = "Vitamina D",
-                    dosage = 25,
-                    dosageUnit = DosageUnit.ML,
-                    type = MedicationType.SYRUP,
                     time = "12:00",
+                    type = MedicationTypeUiState.PILL,
+                    typeDescription = "Syrup",
+                    dosage = "25 ML",
+                    remainingTime = null,
+                    isOverdue = false,
+                    isTaken = false
                 ),
-                Medication(
-                    id = 5,
+                HomeMedicationItemUiState(
                     name = "Vitamina C",
-                    dosage = 1,
-                    dosageUnit = DosageUnit.Pills,
-                    type = MedicationType.PILL,
                     time = "16:00",
+                    type = MedicationTypeUiState.PILL,
+                    typeDescription = "Pill",
+                    dosage = "1 Pill",
+                    remainingTime = null,
+                    isOverdue = false,
+                    isTaken = false
                 ),
-                Medication(
-                    id = 6,
+                HomeMedicationItemUiState(
                     name = "Vitamina D",
-                    dosage = 25,
-                    dosageUnit = DosageUnit.ML,
-                    type = MedicationType.SYRUP,
                     time = "16:00",
+                    type = MedicationTypeUiState.PILL,
+                    typeDescription = "Syrup",
+                    dosage = "25 ML",
+                    remainingTime = null,
+                    isOverdue = false,
+                    isTaken = false
                 ),
             )
         )

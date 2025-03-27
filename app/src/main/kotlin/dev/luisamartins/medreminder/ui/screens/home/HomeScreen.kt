@@ -4,9 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import dev.luisamartins.medreminder.model.DosageUnit
-import dev.luisamartins.medreminder.model.Medication
-import dev.luisamartins.medreminder.model.MedicationType
 import dev.luisamartins.medreminder.ui.screens.addmedication.AddMedicationScreen
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
@@ -23,15 +20,14 @@ fun HomeScreen(
     LaunchedEffect(Unit) {
         viewModel.loadMedications()
     }
-    val state = viewModel.state
     HomeContent(
         currentDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date,
-        medications = state.medications,
+        medications = viewModel.state.medications,
         onAddClick = {
             navController.navigate(AddMedicationScreen)
         },
-        onItemClick = { medication: Medication ->
-            viewModel.markMedicationAsChecked(medication)
+        onItemClick = { medication: HomeMedicationItemUiState ->
+            viewModel.checkMedication(medication)
         },
         modifier = modifier
     )

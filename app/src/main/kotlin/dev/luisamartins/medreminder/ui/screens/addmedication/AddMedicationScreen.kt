@@ -3,7 +3,6 @@ package dev.luisamartins.medreminder.ui.screens.addmedication
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import dev.luisamartins.medreminder.ui.screens.home.HomeViewModel
 import kotlinx.serialization.Serializable
 import org.koin.androidx.compose.koinViewModel
 

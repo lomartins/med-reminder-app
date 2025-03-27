@@ -43,8 +43,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.luisamartins.medreminder.R
-import dev.luisamartins.medreminder.model.DosageUnit
-import dev.luisamartins.medreminder.model.MedicationType
+import dev.luisamartins.medreminder.domain.model.DosageUnit
+import dev.luisamartins.medreminder.domain.model.MedicationType
 import dev.luisamartins.medreminder.ui.components.DosageUnitDropdownMenu
 import dev.luisamartins.medreminder.ui.components.SelectMedicationType
 import dev.luisamartins.medreminder.ui.screens.addmedication.model.MedicationForm

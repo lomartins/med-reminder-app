@@ -21,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.luisamartins.medreminder.model.DosageUnit
+import dev.luisamartins.medreminder.domain.model.DosageUnit
 import dev.luisamartins.medreminder.ui.theme.MedReminderTheme
 
 @Composable

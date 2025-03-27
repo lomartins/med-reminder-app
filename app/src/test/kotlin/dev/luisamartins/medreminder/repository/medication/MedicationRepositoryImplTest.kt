@@ -1,9 +1,9 @@
-import dev.luisamartins.medreminder.data.medication.MedicationDao
-import dev.luisamartins.medreminder.model.DosageUnit
-import dev.luisamartins.medreminder.model.Medication
-import dev.luisamartins.medreminder.model.MedicationType
-import dev.luisamartins.medreminder.repository.medication.MedicationRepositoryImpl
-import dev.luisamartins.medreminder.repository.medication.toEntity
+import dev.luisamartins.medreminder.data.database.tables.medication.MedicationDao
+import dev.luisamartins.medreminder.data.repository.medication.MedicationRepositoryImpl
+import dev.luisamartins.medreminder.data.repository.medication.toEntity
+import dev.luisamartins.medreminder.domain.model.DosageUnit
+import dev.luisamartins.medreminder.domain.model.Medication
+import dev.luisamartins.medreminder.domain.model.MedicationType
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
